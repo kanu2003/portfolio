@@ -1,55 +1,58 @@
-# Welcome to my portfolio
+# Hi, I'm Kanishka 👋
 
-**Use your preferred IDE**
+### Full-Stack Developer | Applied Computer Vision Engineer | Automation Expert
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. 
+I am a highly versatile engineer focused on building **intelligent, end-to-end systems**—from scalable web backends to real-time AI models and cross-platform automation. My work is defined by the ability to **bridge the gap** between cutting-edge Machine Learning (specifically Computer Vision) and robust, production-ready web applications.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 💡 Expertise in Focus
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+My portfolio highlights three core pillars of development:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 1. 👁️ Applied AI & Computer Vision
+I specialize in intelligent systems that interact with the real world, including **OCR, real-time object detection, and image processing**. I focus on deploying these models into live applications.
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 2. ⚙️ Full-Stack & System Architecture
+Proficient in both modern frontend (for dynamic UIs) and powerful backend frameworks (**Node.js/Express, Python/Flask**), with expertise in REST APIs, database design (MySQL), and setting up scalable web services.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### 3. 🤖 Automation & IoT
+I build automated workflows and monitoring solutions by combining hardware/IoT (for real-world data) with software tools (**Selenium, PyAutoGUI**) for multi-channel alerting and system control.
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🛠️ Core Technologies
 
-**Use GitHub Codespaces**
+| Area | Key Technologies Showcased | |
+| :--- | :--- | :--- |
+| **Backend** | **Node.js, Express.js**, Python, Flask, **MySQL** | |
+| **Frontend** | HTML, CSS, JavaScript, JSON | |
+| **AI/ML/CV** | **OpenCV, YOLO**, pytesseract, **Regular Expressions (NLP)** | |
+| **Automation** | **Selenium**, PyAutoGUI, smtplib (Email alerts) | |
+| **Real-Time** | **Flask-Socket.IO** (Real-time communication) | |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## ✨ Featured Projects
 
-This project is built with:
+### 1. OCR-Based Aadhar & PAN Autofill + Verification
+> **(AI & Backend Focus)** Intelligent document processing system using **OpenCV** and **pytesseract** for accurate text extraction (OCR), validating data with complex **Regular Expressions (NLP)**, and providing real-time data ingestion via **AJAX**.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 2. ANPR - Automatic Number Plate Recognition
+> **(Computer Vision Focus)** Advanced **Computer Vision** solution for automatic license plate detection and number extraction, demonstrating capabilities in image preprocessing, contour filtering, and seamless form autofill functionality.
 
-## Can I connect a custom domain to my Lovable project?
+### 3. Dynamic Form-Based Checksheet System
+> **(Full-Stack Architecture)** A comprehensive full-stack application built with **Node.js, Express.js**, and **JSON workflows**. Designed a normalized **MySQL** schema for secure, multi-level form data management.
 
-Yes, you can!
+### 4. Water Detection System with Automation
+> **(IoT & Automation)** IoT-based water detection using **OpenCV** to monitor video feeds, combined with **Selenium** and **PyAutoGUI** for automated multi-channel alerts (Email/WhatsApp) and responsive web control.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📬 Interested in Collaborating?
+
+I'm always keen to discuss complex technical challenges, applied AI projects, or opportunities that leverage full-stack development and automation.
+
+
+* **https://www.linkedin.com/in/kanishka-maurya-1a9656277**
+* **kanishkamaurya003@gmail.com**
