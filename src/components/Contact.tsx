@@ -88,8 +88,8 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      value: "+91 8982734590",
-      href: "tel:+918982734590", // Updated to reflect full number
+      value: "+91 xxxxxxxxxx",
+      href: "tel:+91xxxxxxxxxx", // Updated to reflect full number
       color: "text-green-500"
     },
     {
@@ -116,7 +116,7 @@ const Contact = () => {
     {
       icon: MessageCircle,
       title: "WhatsApp",
-      href: "https://wa.me/918982734590",
+      href: "https://wa.me/91xxxxxxxxxx",
       color: "hover:text-green-600"
     }
   ];
