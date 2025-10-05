@@ -25,20 +25,30 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // ----------------------------------------------------------------------
+  // ** NETLIFY-COMPLIANT SUBMISSION LOGIC **
+  // ----------------------------------------------------------------------
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 🚨 FIX: API Call to Formspree Endpoint
-    const FORMSPREE_URL = 'YOUR_FORMSPREE_ENDPOINT_HERE'; // <-- 🛑 REPLACE THIS 🛑
+    // 1. Get the form data
+    const form = e.currentTarget; // Use the form element itself
+    const data = new FormData(form);
+
+    // 2. Add the required hidden form-name field
+    data.append("form-name", "contact"); // 'contact' matches the name in index.html
 
     try {
-      const response = await fetch(FORMSPREE_URL, {
+      // 3. Send the data to Netlify's endpoint (which is just the root path "/")
+      const response = await fetch("/", {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+        // Netlify requires URL-encoded data, not JSON
+        headers: { 
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(formData),
+        // Convert FormData to URL-encoded string
+        body: new URLSearchParams(data as any).toString(),
       });
 
       if (response.ok) {
@@ -56,10 +66,10 @@ const Contact = () => {
           message: ''
         });
       } else {
-        // Handle server/Formspree errors
+        // Handle Netlify or server errors
         toast({
           title: "Submission Error",
-          description: "There was an issue sending your message. Please try again later.",
+          description: "There was an issue sending your message. Please try checking the network tab.",
           variant: "destructive",
         });
       }
@@ -76,6 +86,7 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
+  // ----------------------------------------------------------------------
 
   const contactInfo = [
     {
@@ -89,7 +100,7 @@ const Contact = () => {
       icon: Phone,
       title: "Phone",
       value: "+91 xxxxxxxxxx",
-      href: "tel:+91xxxxxxxxxx", // Updated to reflect full number
+      href: "tel:+91xxxxxxxxxx",
       color: "text-green-500"
     },
     {
@@ -215,13 +226,24 @@ const Contact = () => {
                 <CardTitle className="text-2xl">Send a Message</CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6" >
+                <form 
+                  onSubmit={handleSubmit} 
+                  className="space-y-6" 
+                  id="contact-form" // Added ID to reference the form in JavaScript
+                  // Netlify form attributes are handled via the hidden form in index.html,
+                  // but leaving data-netlify for good practice if we ever switch to pure HTML post
+                  data-netlify="true" 
+                  name="contact-form-submission" // Optional: name for this specific JSX instance
+                >
+                  
+                  {/* The actual hidden input is handled in the JS logic via FormData */}
+                  
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Name *</Label>
                       <Input
                         id="name"
-                        name="name"
+                        name="name" // Required for form submission
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Your full name"
@@ -233,7 +255,7 @@ const Contact = () => {
                       <Label htmlFor="email">Email *</Label>
                       <Input
                         id="email"
-                        name="email"
+                        name="email" // Required for form submission
                         type="email"
                         value={formData.email}
                         onChange={handleInputChange}
@@ -248,7 +270,7 @@ const Contact = () => {
                     <Label htmlFor="subject">Subject *</Label>
                     <Input
                       id="subject"
-                      name="subject"
+                      name="subject" // Required for form submission
                       value={formData.subject}
                       onChange={handleInputChange}
                       placeholder="What's this about?"
@@ -261,7 +283,7 @@ const Contact = () => {
                     <Label htmlFor="message">Message *</Label>
                     <Textarea
                       id="message"
-                      name="message"
+                      name="message" // Required for form submission
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Tell me about your project or idea..."
