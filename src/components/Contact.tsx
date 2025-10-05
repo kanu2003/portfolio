@@ -26,31 +26,32 @@ const Contact = () => {
   };
 
   // ----------------------------------------------------------------------
-  // ** NETLIFY-COMPLIANT SUBMISSION LOGIC **
+  // ** UPDATED NETLIFY-COMPLIANT SUBMISSION LOGIC **
   // ----------------------------------------------------------------------
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 1. Get the form data
-    const form = e.currentTarget; // Use the form element itself
+    const form = e.currentTarget;
     const data = new FormData(form);
 
-    // 2. Add the required hidden form-name field
-    data.append("form-name", "contact"); // 'contact' matches the name in index.html
+    // *Crucial*: Netlify requires the form-name field for AJAX submissions
+    data.append("form-name", "contact"); // 'contact' must match the name in public/index.html
+
+    const NETLIFY_ENDPOINT = "/"; 
 
     try {
-      // 3. Send the data to Netlify's endpoint (which is just the root path "/")
-      const response = await fetch("/", {
+      const response = await fetch(NETLIFY_ENDPOINT, {
         method: 'POST',
-        // Netlify requires URL-encoded data, not JSON
+        // CRITICAL: Netlify requires URL-encoded data, NOT JSON
         headers: { 
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        // Convert FormData to URL-encoded string
+        // Convert the FormData object to a URL-encoded string
         body: new URLSearchParams(data as any).toString(),
       });
 
+      // Netlify returns a 200 (OK) status upon successful submission.
       if (response.ok) {
         // Success Toast
         toast({
@@ -66,17 +67,18 @@ const Contact = () => {
           message: ''
         });
       } else {
-        // Handle Netlify or server errors
+        // Failure Toast - Log status for debugging
+        console.error("Netlify Submission Failed with Status:", response.status);
         toast({
           title: "Submission Error",
-          description: "There was an issue sending your message. Please try checking the network tab.",
+          description: `Form failed to submit. Please check Netlify Forms for details.`,
           variant: "destructive",
         });
       }
 
     } catch (error) {
-      // Handle network errors
-      console.error("Form submission failed:", error);
+      // Network failure
+      console.error("Network Error during submission:", error);
       toast({
         title: "Network Error",
         description: "Could not reach the server. Please check your connection.",
@@ -100,7 +102,7 @@ const Contact = () => {
       icon: Phone,
       title: "Phone",
       value: "+91 xxxxxxxxxx",
-      href: "tel:+91xxxxxxxxxx",
+      href: "tel:+91xxxxxxxxxx", // Updated to reflect full number
       color: "text-green-500"
     },
     {
@@ -229,14 +231,12 @@ const Contact = () => {
                 <form 
                   onSubmit={handleSubmit} 
                   className="space-y-6" 
-                  id="contact-form" // Added ID to reference the form in JavaScript
+                  id="contact-form" // Added ID for form reference
                   // Netlify form attributes are handled via the hidden form in index.html,
                   // but leaving data-netlify for good practice if we ever switch to pure HTML post
                   data-netlify="true" 
-                  name="contact-form-submission" // Optional: name for this specific JSX instance
+                  name="contact-form-submission" 
                 >
-                  
-                  {/* The actual hidden input is handled in the JS logic via FormData */}
                   
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
